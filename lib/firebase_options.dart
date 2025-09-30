@@ -6,12 +6,12 @@ class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       return FirebaseOptions(
-        apiKey: "AIzaSyD54umzX4ksDFHRSBSa-EK66vmDCztGa3s",
-        authDomain: "financing-app-4c4d5.firebaseapp.com",
-        projectId: "financing-app-4c4d5",
-        storageBucket: "financing-app-4c4d5.firebasestorage.app",
-        messagingSenderId: "891273066809",
-        appId: "1:891273066809:web:6ee62718d1bf22445810e8",
+         apiKey: "AIzaSyD54umzX4ksDFHRSBSa-EK66vmDCztGa3s",
+         authDomain: "financing-app-4c4d5.firebaseapp.com",
+         projectId: "financing-app-4c4d5",
+         storageBucket: "financing-app-4c4d5.firebasestorage.app",
+         messagingSenderId: "891273066809",
+         appId: "1:891273066809:web:6ee62718d1bf22445810e8"
       );
     }
 

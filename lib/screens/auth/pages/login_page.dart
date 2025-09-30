@@ -1,7 +1,8 @@
+import 'package:financing_app/screens/auth/pages/expenses_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../services/auth_service.dart';
+import '../../../services/auth_service.dart'; 
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -28,7 +29,10 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: size.width * 0.9, maxHeight: size.height * 0.9),
+            constraints: BoxConstraints(
+              maxWidth: size.width * 0.9,
+              maxHeight: size.height * 0.9,
+            ),
             child: Card(
               elevation: 6,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -41,7 +45,10 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Icon(Icons.account_balance_wallet, size: 80, color: Colors.blueAccent),
                       const SizedBox(height: 16),
-                      Text('Finance App', style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.blueAccent)),
+                      Text(
+                        'Finance App',
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.blueAccent),
+                      ),
                       const SizedBox(height: 24),
                       TextFormField(
                         controller: _email,
@@ -103,7 +110,10 @@ class _LoginPageState extends State<LoginPage> {
                                       side: const BorderSide(color: Colors.blueAccent),
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                                     ),
-                                    child: const Text('Criar Conta', style: TextStyle(fontSize: 16, color: Colors.blueAccent)),
+                                    child: const Text(
+                                      'Criar Conta',
+                                      style: TextStyle(fontSize: 16, color: Colors.blueAccent),
+                                    ),
                                   ),
                                 ),
                               ],
@@ -129,7 +139,11 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await context.read<AuthService>().signIn(_email.text.trim(), _password.text.trim());
-      setState(() => _success = true);
+
+      // Redireciona para ExpensesPage
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const ExpensesPage()),
+      );
     } on FirebaseAuthException catch (e) {
       setState(() => _error = _handleFirebaseError(e));
     } catch (e) {
@@ -147,7 +161,11 @@ class _LoginPageState extends State<LoginPage> {
 
     try {
       await context.read<AuthService>().signUp(_email.text.trim(), _password.text.trim());
-      setState(() => _success = true);
+
+      // Redireciona para ExpensesPage após criar conta
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const ExpensesPage()),
+      );
     } on FirebaseAuthException catch (e) {
       setState(() => _error = _handleFirebaseError(e));
     } catch (e) {
